@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculateur d'Équations du Second Degré</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Δ</div>
+
+            <div>
+                <h1>Calculateur d'Équations du Second Degré</h1>
+                <p>Résolvez facilement une équation de la forme ax² + bx + c = 0.</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Calculateur -->
+        <section class="calculator-card">
+
+            <div class="section-title">
+                <span>①</span>
+                <div>
+                    <h2>Calculateur</h2>
+                    <p>Entrez les coefficients de votre équation.</p>
+                </div>
+            </div>
+
+            <div class="equation-preview">
+                <span id="previewA">a</span>x²
+                <span id="previewB">+ b</span>x
+                <span id="previewC">+ c</span>
+                = 0
+            </div>
+
+            <div class="inputs">
+
+                <div class="input-group">
+                    <label for="a">Coefficient a</label>
+                    <input
+                        type="number"
+                        id="a"
+                        step="any"
+                        placeholder="Ex. 4"
+                    >
+                    <small>Doit être différent de 0</small>
+                </div>
+
+                <div class="input-group">
+                    <label for="b">Coefficient b</label>
+                    <input
+                        type="number"
+                        id="b"
+                        step="any"
+                        placeholder="Ex. 6"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="c">Coefficient c</label>
+                    <input
+                        type="number"
+                        id="c"
+                        step="any"
+                        placeholder="Ex. 8"
+                    >
+                </div>
+
+            </div>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <div class="buttons">
+                <button id="solveBtn" class="btn primary">
+                    <span>✓</span> Résoudre
+                </button>
+
+                <button id="resetBtn" class="btn secondary">
+                    ↻ Réinitialiser
+                </button>
+            </div>
+
+        </section>
+
+        <!-- Exemples -->
+        <section class="examples-card">
+
+            <div class="section-title">
+                <span>💡</span>
+                <div>
+                    <h2>Exemples</h2>
+                    <p>Cliquez sur une équation pour la tester.</p>
+                </div>
+            </div>
+
+            <div class="examples">
+
+                <button class="example" data-a="4" data-b="6" data-c="8">
+                    <strong>4x² + 6x + 8 = 0</strong>
+                    <span>Δ &lt; 0</span>
+                </button>
+
+                <button class="example" data-a="41" data-b="-5" data-c="-8">
+                    <strong>41x² − 5x − 8 = 0</strong>
+                    <span>Δ &gt; 0</span>
+                </button>
+
+                <button class="example" data-a="1" data-b="-5" data-c="6">
+                    <strong>x² − 5x + 6 = 0</strong>
+                    <span>Δ &gt; 0</span>
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Résultats -->
+        <section id="resultSection" class="result-card hidden">
+
+            <div class="section-title">
+                <span>②</span>
+                <div>
+                    <h2>Résultat</h2>
+                    <p>Voici les solutions de votre équation.</p>
+                </div>
+            </div>
+
+            <div id="resultContent"></div>
+
+        </section>
+
+        <!-- Résolution détaillée -->
+        <section id="stepsSection" class="steps-card hidden">
+
+            <div class="section-title">
+                <span>③</span>
+                <div>
+                    <h2>Résolution étape par étape</h2>
+                    <p>Comprenez comment obtenir le résultat.</p>
+                </div>
+            </div>
+
+            <div id="stepsContent"></div>
+
+        </section>
+
+        <!-- Formules -->
+        <section class="info-card">
+
+            <div class="section-title">
+                <span>📐</span>
+                <div>
+                    <h2>Formules utiles</h2>
+                    <p>Les principales formules à connaître.</p>
+                </div>
+            </div>
+
+            <div class="formula-grid">
+
+                <div class="formula">
+                    <h3>Discriminant</h3>
+                    <div class="formula-expression">
+                        Δ = b² − 4ac
+                    </div>
+                </div>
+
+                <div class="formula">
+                    <h3>Si Δ &gt; 0</h3>
+                    <div class="formula-expression">
+                        x₁ = (−b − √Δ) / 2a
+                    </div>
+                    <div class="formula-expression">
+                        x₂ = (−b + √Δ) / 2a
+                    </div>
+                </div>
+
+                <div class="formula">
+                    <h3>Si Δ = 0</h3>
+                    <div class="formula-expression">
+                        x₀ = −b / 2a
+                    </div>
+                </div>
+
+                <div class="formula">
+                    <h3>Si Δ &lt; 0</h3>
+                    <div class="formula-expression">
+                        x₁ = (−b − i√|Δ|) / 2a
+                    </div>
+                    <div class="formula-expression">
+                        x₂ = (−b + i√|Δ|) / 2a
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Les trois cas -->
+        <section class="cases-card">
+
+            <div class="section-title">
+                <span>📚</span>
+                <div>
+                    <h2>Les trois cas du discriminant</h2>
+                    <p>Comment interpréter la valeur de Δ ?</p>
+                </div>
+            </div>
+
+            <div class="cases">
+
+                <div class="case positive">
+                    <div class="case-symbol">Δ &gt; 0</div>
+                    <h3>Deux solutions réelles</h3>
+                    <p>
+                        L'équation possède deux solutions réelles distinctes :
+                        x₁ et x₂.
+                    </p>
+                </div>
+
+                <div class="case zero">
+                    <div class="case-symbol">Δ = 0</div>
+                    <h3>Une solution réelle</h3>
+                    <p>
+                        L'équation possède une solution réelle unique :
+                        x₀.
+                    </p>
+                </div>
+
+                <div class="case negative">
+                    <div class="case-symbol">Δ &lt; 0</div>
+                    <h3>Aucune solution réelle</h3>
+                    <p>
+                        L'équation ne possède aucune solution dans ℝ,
+                        mais possède deux solutions complexes.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Calculateur d'Équations du Second Degré</p>
+        <p>Développer par OBED.L pour simplifier le calcul de l'équation du second degré</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
